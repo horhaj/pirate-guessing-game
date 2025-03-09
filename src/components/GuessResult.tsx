@@ -21,7 +21,7 @@ const GuessResult: React.FC<GuessResultProps> = ({
   
   return (
     <div className={cn(
-      "w-full max-w-md mx-auto p-5 rounded-xl border transition-all duration-300",
+      "w-full max-w-full mx-auto p-5 rounded-xl border transition-all duration-300",
       isCorrect 
         ? "border-green-300 bg-green-50 shadow-md" 
         : "border-gray-200 bg-white"
@@ -51,12 +51,12 @@ const GuessResult: React.FC<GuessResultProps> = ({
         )}
       </div>
       
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto w-full pb-2">
+        <table className="w-full min-w-[600px] text-sm">
           <thead>
             <tr className="border-b text-xs text-gray-500">
               {comparisons.map((comparison) => (
-                <th key={`header-${comparison.attribute}`} className="px-2 py-1 font-medium">
+                <th key={`header-${comparison.attribute}`} className="px-4 py-2 font-medium">
                   {comparison.attribute}
                 </th>
               ))}

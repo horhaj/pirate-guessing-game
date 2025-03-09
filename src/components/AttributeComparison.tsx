@@ -60,14 +60,14 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
     return (
       <td 
         className={cn(
-          "p-2 text-center border-r last:border-r-0", 
+          "p-4 text-center border-r last:border-r-0", 
           getBgColor()
         )}
         style={{ animationDelay: `${delay}ms` }}
       >
-        <div className="flex flex-col items-center justify-center min-h-[40px]">
-          <p className="font-semibold">{getDisplayValue()}</p>
-          <div className="flex items-center justify-center mt-1">
+        <div className="flex flex-col items-center justify-center">
+          <p className="font-semibold mb-2">{getDisplayValue()}</p>
+          <div className="flex items-center justify-center">
             {getIcon()}
           </div>
         </div>
