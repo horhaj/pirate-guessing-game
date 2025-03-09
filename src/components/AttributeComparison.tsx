@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AttributeComparison as AttributeComparisonType } from '../utils/gameLogic';
 import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
@@ -7,9 +6,10 @@ import { cn } from '@/lib/utils';
 interface AttributeComparisonProps {
   comparison: AttributeComparisonType;
   index: number;
+  layout?: 'vertical' | 'horizontal';
 }
 
-const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, index }) => {
+const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, index, layout = 'vertical' }) => {
   const { attribute, value, status } = comparison;
   
   const getBgColor = () => {
@@ -55,6 +55,25 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
   };
 
   const delay = index * 100;
+  
+  if (layout === 'horizontal') {
+    return (
+      <td 
+        className={cn(
+          "p-2 text-center border-r last:border-r-0", 
+          getBgColor()
+        )}
+        style={{ animationDelay: `${delay}ms` }}
+      >
+        <div className="flex flex-col items-center justify-center min-h-[40px]">
+          <p className="font-semibold">{getDisplayValue()}</p>
+          <div className="flex items-center justify-center mt-1">
+            {getIcon()}
+          </div>
+        </div>
+      </td>
+    );
+  }
   
   return (
     <div 

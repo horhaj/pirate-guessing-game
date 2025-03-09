@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Character } from '../data/onepiece-characters';
 import { AttributeComparison as AttributeComparisonType, compareCharacters } from '../utils/gameLogic';
@@ -52,14 +51,30 @@ const GuessResult: React.FC<GuessResultProps> = ({
         )}
       </div>
       
-      <div className="space-y-1">
-        {comparisons.map((comparison, index) => (
-          <AttributeComparison 
-            key={`${guessedCharacter.id}-${comparison.attribute}`} 
-            comparison={comparison}
-            index={index}
-          />
-        ))}
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b text-xs text-gray-500">
+              {comparisons.map((comparison) => (
+                <th key={`header-${comparison.attribute}`} className="px-2 py-1 font-medium">
+                  {comparison.attribute}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {comparisons.map((comparison, index) => (
+                <AttributeComparison 
+                  key={`${guessedCharacter.id}-${comparison.attribute}`} 
+                  comparison={comparison}
+                  index={index}
+                  layout="horizontal"
+                />
+              ))}
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
