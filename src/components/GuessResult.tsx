@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Character } from '../data/onepiece-characters';
+import { Character } from '../types/character';
 import { AttributeComparison as AttributeComparisonType, compareCharacters } from '../utils/gameLogic';
 import AttributeComparison from './AttributeComparison';
 import CharacterImage from './CharacterImage';
