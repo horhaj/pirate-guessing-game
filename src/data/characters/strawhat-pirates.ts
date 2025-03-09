@@ -1,25 +1,7 @@
 
-export interface Character {
-  id: number;
-  name: string;
-  gender: 'Male' | 'Female' | 'Other';
-  race: string;
-  bounty: number | null;
-  devilFruit: {
-    has: boolean;
-    type: 'Paramecia' | 'Zoan' | 'Logia' | 'Mythical Zoan' | 'Ancient Zoan' | 'Special Paramecia' | 'None';
-    name: string | null;
-  };
-  firstAppearance: {
-    saga: string;
-    arc: string;
-  };
-  crew: string;
-  isAlive: boolean;
-  role: string;
-}
+import { Character } from '../../types/character';
 
-const characters: Character[] = [
+const strawHatPirates: Character[] = [
   {
     id: 1,
     name: 'Monkey D. Luffy',
@@ -37,7 +19,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/luffy.jpg'
   },
   {
     id: 2,
@@ -56,7 +39,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Swordsman'
+    role: 'Swordsman',
+    image: '/images/zoro.jpg'
   },
   {
     id: 3,
@@ -75,7 +59,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Navigator'
+    role: 'Navigator',
+    image: '/images/nami.jpg'
   },
   {
     id: 4,
@@ -94,7 +79,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Sniper'
+    role: 'Sniper',
+    image: '/images/usopp.jpg'
   },
   {
     id: 5,
@@ -113,7 +99,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Cook'
+    role: 'Cook',
+    image: '/images/sanji.jpg'
   },
   {
     id: 6,
@@ -132,7 +119,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Doctor'
+    role: 'Doctor',
+    image: '/images/chopper.jpg'
   },
   {
     id: 7,
@@ -151,7 +139,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Archaeologist'
+    role: 'Archaeologist',
+    image: '/images/robin.jpg'
   },
   {
     id: 8,
@@ -170,7 +159,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Shipwright'
+    role: 'Shipwright',
+    image: '/images/franky.jpg'
   },
   {
     id: 9,
@@ -189,7 +179,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Musician'
+    role: 'Musician',
+    image: '/images/brook.jpg'
   },
   {
     id: 10,
@@ -208,103 +199,9 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Helmsman'
-  },
-  {
-    id: 11,
-    name: 'Trafalgar D. Water Law',
-    gender: 'Male',
-    race: 'Human',
-    bounty: 3000000000,
-    devilFruit: {
-      has: true,
-      type: 'Paramecia',
-      name: 'Ope Ope no Mi'
-    },
-    firstAppearance: {
-      saga: 'Summit War',
-      arc: 'Sabaody Archipelago'
-    },
-    crew: 'Heart Pirates',
-    isAlive: true,
-    role: 'Captain'
-  },
-  {
-    id: 12,
-    name: 'Boa Hancock',
-    gender: 'Female',
-    race: 'Human',
-    bounty: 80000000,
-    devilFruit: {
-      has: true,
-      type: 'Paramecia',
-      name: 'Mero Mero no Mi'
-    },
-    firstAppearance: {
-      saga: 'Summit War',
-      arc: 'Amazon Lily'
-    },
-    crew: 'Kuja Pirates',
-    isAlive: true,
-    role: 'Captain'
-  },
-  {
-    id: 13,
-    name: 'Portgas D. Ace',
-    gender: 'Male',
-    race: 'Human',
-    bounty: 550000000,
-    devilFruit: {
-      has: true,
-      type: 'Logia',
-      name: 'Mera Mera no Mi'
-    },
-    firstAppearance: {
-      saga: 'Alabasta',
-      arc: 'Drum Island'
-    },
-    crew: 'Whitebeard Pirates',
-    isAlive: false,
-    role: '2nd Division Commander'
-  },
-  {
-    id: 14,
-    name: 'Marshall D. Teach',
-    gender: 'Male',
-    race: 'Human',
-    bounty: 3996000000,
-    devilFruit: {
-      has: true,
-      type: 'Logia',
-      name: 'Yami Yami no Mi'
-    },
-    firstAppearance: {
-      saga: 'Skypiea',
-      arc: 'Jaya'
-    },
-    crew: 'Blackbeard Pirates',
-    isAlive: true,
-    role: 'Captain'
-  },
-  {
-    id: 15,
-    name: 'Shanks',
-    gender: 'Male',
-    race: 'Human',
-    bounty: 4048900000,
-    devilFruit: {
-      has: false,
-      type: 'None',
-      name: null
-    },
-    firstAppearance: {
-      saga: 'East Blue',
-      arc: 'Romance Dawn'
-    },
-    crew: 'Red Hair Pirates',
-    isAlive: true,
-    role: 'Captain'
+    role: 'Helmsman',
+    image: '/images/jinbe.jpg'
   }
 ];
 
-export default characters;
+export default strawHatPirates;
