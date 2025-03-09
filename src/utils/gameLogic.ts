@@ -1,4 +1,5 @@
 import characters, { Character } from '../data/onepiece-characters';
+import { formatBountyValue } from '../components/BountyDisplay';
 
 // Select a random character for the game
 export const getRandomCharacter = (): Character => {
@@ -209,8 +210,8 @@ export const compareCharacters = (guessed: Character, target: Character): Attrib
   return comparisons;
 };
 
-// Format bounty with commas
+// Format bounty with Berry symbol and abbreviated numbers
 export const formatBounty = (bounty: number | null): string => {
   if (bounty === null) return 'Unknown';
-  return bounty.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ฿';
+  return `฿ ${formatBountyValue(bounty)}`;
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { AttributeComparison as AttributeComparisonType } from '../utils/gameLogic';
 import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import BountyDisplay from './BountyDisplay';
 
 interface AttributeComparisonProps {
   comparison: AttributeComparisonType;
@@ -59,6 +60,9 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
   };
 
   const getDisplayValue = () => {
+    if (attribute === 'Bounty') {
+      return <BountyDisplay bounty={value as number | null} />;
+    }
     if (value === null) return 'Unknown';
     if (typeof value === 'boolean') return value ? 'Yes' : 'No';
     return value;
@@ -76,7 +80,7 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
         style={{ animationDelay: `${delay}ms` }}
       >
         <div className="flex flex-col items-center justify-center">
-          <p className="font-semibold mb-2">{getDisplayValue()}</p>
+          <div className="font-semibold mb-2">{getDisplayValue()}</div>
           <div className="flex items-center justify-center">
             {getIcon()}
           </div>
@@ -95,7 +99,7 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
     >
       <div>
         <p className="text-sm font-medium text-gray-700">{attribute}</p>
-        <p className="text-base font-semibold">{getDisplayValue()}</p>
+        <div className="text-base font-semibold">{getDisplayValue()}</div>
       </div>
       <div className="flex items-center justify-center">
         {getIcon()}
