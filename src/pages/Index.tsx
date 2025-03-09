@@ -9,7 +9,7 @@ const Index = () => {
         <CharacterGuessGame />
         
         <div className="mt-16 text-center text-sm text-gray-500">
-          <p>Inspired by Wordle. Created for One Piece fans.</p>
+          <p>list dial persos still limited</p>
         </div>
       </div>
     </div>

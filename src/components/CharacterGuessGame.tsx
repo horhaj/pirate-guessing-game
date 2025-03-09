@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Character } from '../data/onepiece-characters';
 import { getRandomCharacter, getCharacterByName, characterExists } from '../utils/gameLogic';
 import GuessInput from './GuessInput';
 import GuessResult from './GuessResult';
+import CharacterImage from './CharacterImage';
 import { useToast } from '@/hooks/use-toast';
 
 const CharacterGuessGame: React.FC = () => {
@@ -80,12 +80,19 @@ const CharacterGuessGame: React.FC = () => {
         </p>
       </div>
       
-      <div className="mb-6">
-        <GuessInput onSubmit={handleGuess} isCorrect={isCorrect} />
-      </div>
-      
       {isCorrect && (
-        <div className="flex justify-center mb-8 animate-fade-in">
+        <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
+          <div className="mb-4 text-center">
+            <CharacterImage 
+              src={targetCharacter.image}
+              alt={targetCharacter.name}
+              size="large"
+              className="mx-auto mb-2"
+            />
+            <h2 className="text-2xl font-bold text-green-700 mb-1">{targetCharacter.name}</h2>
+            <p className="text-gray-600">{targetCharacter.role} of {targetCharacter.crew}</p>
+          </div>
+          
           <button
             onClick={handleNewGame}
             className="px-5 py-2 bg-op-gold-500 text-white rounded-lg shadow-md hover:bg-op-gold-600 transition-colors btn-hover-effect"
@@ -94,6 +101,10 @@ const CharacterGuessGame: React.FC = () => {
           </button>
         </div>
       )}
+      
+      <div className="mb-6">
+        <GuessInput onSubmit={handleGuess} isCorrect={isCorrect} />
+      </div>
       
       <div className="space-y-6">
         {guesses.length > 0 ? (

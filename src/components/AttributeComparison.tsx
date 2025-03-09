@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AttributeComparison as AttributeComparisonType } from '../utils/gameLogic';
 import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
@@ -19,9 +18,11 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
       case 'wrong':
         return 'bg-red-50 border-red-200';
       case 'higher':
-        return 'bg-amber-50 border-amber-200';
       case 'lower':
         return 'bg-amber-50 border-amber-200';
+      case 'earlier':
+      case 'later':
+        return 'bg-blue-50 border-blue-200';
       default:
         return 'bg-gray-50 border-gray-200';
     }
@@ -37,6 +38,10 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
         return <ArrowDown className="w-5 h-5 text-amber-500" />;
       case 'lower':
         return <ArrowUp className="w-5 h-5 text-amber-500" />;
+      case 'earlier':
+        return <span className="text-xs font-bold text-blue-500">BEFORE</span>;
+      case 'later':
+        return <span className="text-xs font-bold text-blue-500">AFTER</span>;
       default:
         return null;
     }

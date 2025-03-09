@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { getAllCharacterNames } from '../utils/gameLogic';
 import { cn } from '@/lib/utils';
@@ -12,6 +11,7 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
   
@@ -26,9 +26,11 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
       );
       setSuggestions(filtered.slice(0, 5)); // Limit to 5 suggestions
       setShowSuggestions(filtered.length > 0);
+      setSelectedIndex(-1); // Reset selection when input changes
     } else {
       setSuggestions([]);
       setShowSuggestions(false);
+      setSelectedIndex(-1);
     }
   }, [input]);
   
@@ -50,6 +52,34 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions || suggestions.length === 0) return;
+    
+    // Arrow down
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev < suggestions.length - 1 ? prev + 1 : prev));
+    }
+    
+    // Arrow up
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev > 0 ? prev - 1 : 0));
+    }
+    
+    // Enter to select
+    if (e.key === 'Enter' && selectedIndex >= 0) {
+      e.preventDefault();
+      handleSuggestionClick(suggestions[selectedIndex]);
+    }
+    
+    // Escape to close suggestions
+    if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,7 +107,8 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onFocus={() => input.length > 0 && setSuggestions.length > 0 && setShowSuggestions(true)}
+            onKeyDown={handleKeyDown}
+            onFocus={() => input.length > 0 && suggestions.length > 0 && setShowSuggestions(true)}
             className="w-full px-4 py-3 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-op-blue-300 transition-all"
             placeholder="Enter a character name..."
             disabled={isCorrect}
@@ -105,7 +136,10 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors"
+              className={cn(
+                "px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors",
+                selectedIndex === index ? "bg-gray-100" : ""
+              )}
               onClick={() => handleSuggestionClick(suggestion)}
             >
               {suggestion}
