@@ -1,0 +1,17 @@
+/* src/styles/pirate-theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
+/* Apply pirate font to relevant elements */
+.font-pirate {
+  font-family: 'Pirata One', cursive;
+}
+
+/* Add scroll styling to make it look like an old treasure map */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF8E1;
+  border: 1px

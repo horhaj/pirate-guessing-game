@@ -86,55 +86,63 @@ const CharacterGuessGame: React.FC = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold mb-3 bg-gradient-to-r from-op-blue-600 to-op-blue-800 bg-clip-text text-transparent">
-          One Piece Character Guesser
+        <h1 className="text-3xl font-bold mb-3 text-[#8B4513] font-pirate">
+          Find the Mystery Pirate!
         </h1>
-        <p className="text-gray-600 max-w-md mx-auto">
+        <p className="text-[#8B4513] max-w-md mx-auto border-b-2 border-[#D4AF37] pb-3 font-medium">
           Guess the mystery One Piece character. See which attributes match or differ from the target character.
         </p>
       </div>
       
       {isCorrect && (
         <div className="flex flex-col items-center justify-center mb-8 animate-fade-in">
-          <div className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl border border-green-200 shadow-lg mb-6 w-full max-w-md">
-            <div className="text-center">
-              <CharacterImage 
-                src={targetCharacter.image}
-                alt={targetCharacter.name}
-                size="large"
-                className="mx-auto mb-4 border-4 border-op-gold-400 shadow-lg"
+          <div className="p-6 bg-[url('https://i.imgur.com/kl9UOM0.png')] bg-cover rounded-xl border-2 border-[#D4AF37] shadow-lg mb-6 w-full max-w-md relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#FFF8E1]/85 backdrop-blur-[1px]"></div>
+            <div className="text-center relative z-10">
+              <img 
+                src="/images/wanted-poster-frame.png" 
+                alt="Wanted Poster Frame"
+                className="absolute top-0 left-0 w-full h-full object-contain opacity-70 z-0"
               />
-              <h2 className="text-2xl font-bold text-op-blue-800 mb-1">
-                {targetCharacter.name}
-              </h2>
-              <p className="text-gray-600 mb-2">{targetCharacter.role} of {targetCharacter.crew}</p>
-              
-              <div className="grid grid-cols-2 gap-2 my-4 text-sm">
-                <div className="bg-white p-2 rounded-lg shadow-sm">
-                  <span className="text-gray-500">Race:</span> 
-                  <span className="font-medium ml-1">{targetCharacter.race}</span>
-                </div>
-                <div className="bg-white p-2 rounded-lg shadow-sm">
-                  <span className="text-gray-500">Bounty:</span> 
-                  <span className="font-medium ml-1">
-                    <BountyDisplay bounty={targetCharacter.bounty} />
-                  </span>
-                </div>
-                <div className="bg-white p-2 rounded-lg shadow-sm">
-                  <span className="text-gray-500">Devil Fruit:</span> 
-                  <span className="font-medium ml-1">{targetCharacter.devilFruit.has ? 'Yes' : 'No'}</span>
-                </div>
-                <div className="bg-white p-2 rounded-lg shadow-sm">
-                  <span className="text-gray-500">Status:</span> 
-                  <span className="font-medium ml-1">{targetCharacter.isAlive ? 'Alive' : 'Deceased'}</span>
+              <div className="relative z-10">
+                <CharacterImage 
+                  src={targetCharacter.image}
+                  alt={targetCharacter.name}
+                  size="large"
+                  className="mx-auto mb-4 border-4 border-[#D4AF37] shadow-lg"
+                />
+                <h2 className="text-2xl font-bold text-[#8B4513] mb-1 font-pirate">
+                  {targetCharacter.name}
+                </h2>
+                <p className="text-[#8B4513] mb-2">{targetCharacter.role} of {targetCharacter.crew}</p>
+                
+                <div className="grid grid-cols-2 gap-2 my-4 text-sm">
+                  <div className="bg-[#FFF8E1]/70 p-2 rounded-lg shadow-sm border border-[#D4AF37]">
+                    <span className="text-[#8B4513]">Race:</span> 
+                    <span className="font-medium ml-1">{targetCharacter.race}</span>
+                  </div>
+                  <div className="bg-[#FFF8E1]/70 p-2 rounded-lg shadow-sm border border-[#D4AF37]">
+                    <span className="text-[#8B4513]">Bounty:</span> 
+                    <span className="font-medium ml-1">
+                      <BountyDisplay bounty={targetCharacter.bounty} />
+                    </span>
+                  </div>
+                  <div className="bg-[#FFF8E1]/70 p-2 rounded-lg shadow-sm border border-[#D4AF37]">
+                    <span className="text-[#8B4513]">Devil Fruit:</span> 
+                    <span className="font-medium ml-1">{targetCharacter.devilFruit.has ? 'Yes' : 'No'}</span>
+                  </div>
+                  <div className="bg-[#FFF8E1]/70 p-2 rounded-lg shadow-sm border border-[#D4AF37]">
+                    <span className="text-[#8B4513]">Status:</span> 
+                    <span className="font-medium ml-1">{targetCharacter.isAlive ? 'Alive' : 'Deceased'}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="text-center mt-2">
-              <p className="text-green-700 font-bold mb-4">
-                You found the character in {attemptsCount} {attemptsCount === 1 ? 'guess' : 'guesses'}!
-              </p>
+              
+              <div className="relative z-10 text-center mt-2">
+                <p className="text-[#8B4513] font-bold mb-4 font-pirate text-lg">
+                  You found the pirate in {attemptsCount} {attemptsCount === 1 ? 'guess' : 'guesses'}!
+                </p>
+              </div>
             </div>
           </div>
           

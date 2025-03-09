@@ -15,10 +15,10 @@ interface GuessResultProps {
 // Helper functions for styling
 const getComparisonCardClass = (isCorrect: boolean) => {
   return cn(
-    "w-full max-w-full mx-auto p-4 rounded-xl border transition-all duration-300 shadow-md",
+    "w-full max-w-full mx-auto p-4 rounded-xl border-2 transition-all duration-300 shadow-lg",
     isCorrect 
-      ? "border-green-300 bg-gradient-to-br from-green-50 to-green-100 animate-fade-in" 
-      : "border-gray-200 bg-white"
+      ? "border-green-600 bg-gradient-to-br from-green-50 to-green-100 animate-fade-in" 
+      : "border-[#D4AF37] bg-[#FFF8E1]"
   );
 };
 
@@ -26,51 +26,51 @@ const getStatusIconAndColor = (comparison: AttributeComparisonType) => {
   switch (comparison.status) {
     case 'correct':
       return {
-        icon: <Check className="w-5 h-5 text-green-500" />,
+        icon: <Check className="w-5 h-5 text-green-600" />,
         bgColor: 'bg-green-50',
-        borderColor: 'border-green-200',
+        borderColor: 'border-green-300',
         textColor: 'text-green-700'
       };
     case 'wrong':
       return {
-        icon: <X className="w-5 h-5 text-red-500" />,
+        icon: <X className="w-5 h-5 text-red-600" />,
         bgColor: 'bg-red-50',
-        borderColor: 'border-red-200',
+        borderColor: 'border-red-300',
         textColor: 'text-red-700'
       };
     case 'higher':
       return {
-        icon: <ChevronDown className="w-5 h-5 text-amber-500" />,
+        icon: <ChevronDown className="w-5 h-5 text-amber-600" />,
         bgColor: 'bg-amber-50',
-        borderColor: 'border-amber-200',
+        borderColor: 'border-amber-300',
         textColor: 'text-amber-700'
       };
     case 'lower':
       return {
-        icon: <ChevronUp className="w-5 h-5 text-amber-500" />,
+        icon: <ChevronUp className="w-5 h-5 text-amber-600" />,
         bgColor: 'bg-amber-50',
-        borderColor: 'border-amber-200',
+        borderColor: 'border-amber-300',
         textColor: 'text-amber-700'
       };
     case 'earlier':
       return {
-        icon: <Clock className="w-5 h-5 rotate-[-45deg] text-blue-500" />,
+        icon: <Clock className="w-5 h-5 rotate-[-45deg] text-blue-600" />,
         bgColor: 'bg-blue-50',
-        borderColor: 'border-blue-200',
+        borderColor: 'border-blue-300',
         textColor: 'text-blue-700'
       };
     case 'later':
       return {
-        icon: <Clock className="w-5 h-5 rotate-45 text-blue-500" />,
+        icon: <Clock className="w-5 h-5 rotate-45 text-blue-600" />,
         bgColor: 'bg-blue-50',
-        borderColor: 'border-blue-200',
+        borderColor: 'border-blue-300',
         textColor: 'text-blue-700'
       };
     default:
       return {
         icon: null,
         bgColor: 'bg-gray-50',
-        borderColor: 'border-gray-200',
+        borderColor: 'border-gray-300',
         textColor: 'text-gray-700'
       };
   }
@@ -135,18 +135,19 @@ const GuessResult: React.FC<GuessResultProps> = ({ guessedCharacter, targetChara
           size="medium"
           className={cn(
             "mr-4 border-2", 
-            isCorrect ? "border-green-400 shadow-lg shadow-green-100" : "border-op-gold-400"
+            isCorrect ? "border-green-600 shadow-lg shadow-green-200" : "border-[#D4AF37]"
           )}
         />
         
         <div className="flex-1">
           <h3 className={cn(
             "text-lg md:text-xl font-bold",
-            isCorrect ? "text-green-600" : "text-op-blue-800"
+            isCorrect ? "text-green-700" : "text-[#8B4513]",
+            "font-pirate"
           )}>
             {guessedCharacter.name}
           </h3>
-          <p className="text-sm text-gray-600">{guessedCharacter.role} • {guessedCharacter.crew}</p>
+          <p className="text-sm text-[#8B4513]">{guessedCharacter.role} • {guessedCharacter.crew}</p>
         </div>
         
         {isCorrect && (
@@ -157,14 +158,18 @@ const GuessResult: React.FC<GuessResultProps> = ({ guessedCharacter, targetChara
       </div>
       
       <div className="overflow-x-auto pb-2 -mx-2 px-2">
-        <table className="w-full min-w-[650px] border-separate border-spacing-0">
+        <table className="w-full min-w-[650px] border-separate border-spacing-0" style={{
+          backgroundImage: "url('https://i.imgur.com/kl9UOM0.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}>
           <thead>
-            <tr>
+            <tr className="bg-[#8B4513]/80">
               {comparisons.map((comparison) => {
                 const { textColor } = getStatusIconAndColor(comparison);
                 return (
                   <th key={`header-${comparison.attribute}`} 
-                    className="px-3 py-2 text-xs font-medium text-gray-500 border-b border-gray-200">
+                    className="px-3 py-2 text-xs font-medium text-[#FFF8E1] border-b border-[#D4AF37] first:rounded-tl-lg last:rounded-tr-lg font-pirate">
                     <div className="flex items-center justify-center space-x-1">
                       <span>{getAttributeIcon(comparison.attribute)}</span>
                       <span>{comparison.attribute}</span>
@@ -184,9 +189,12 @@ const GuessResult: React.FC<GuessResultProps> = ({ guessedCharacter, targetChara
                   <td 
                     key={`${guessedCharacter.id}-${comparison.attribute}`}
                     className={cn(
-                      "p-3 text-center border-b border-x first:rounded-bl last:rounded-br", 
-                      bgColor,
-                      borderColor
+                      "p-3 text-center border-b-2 border-x-2 first:border-l-2 last:border-r-2 first:rounded-bl-lg last:rounded-br-lg", 
+                      "bg-[#FFF8E1]/90",
+                      comparison.status === 'correct' ? 'border-green-400' : 
+                      comparison.status === 'wrong' ? 'border-red-400' :
+                      comparison.status === 'higher' || comparison.status === 'lower' ? 'border-amber-400' :
+                      'border-blue-400'
                     )}
                     style={{ 
                       animationDelay: `${delay}ms`,
@@ -203,12 +211,13 @@ const GuessResult: React.FC<GuessResultProps> = ({ guessedCharacter, targetChara
                           comparison.status === 'correct' ? 'bg-green-100' : 
                           comparison.status === 'wrong' ? 'bg-red-100' :
                           comparison.status === 'higher' || comparison.status === 'lower' ? 'bg-amber-100' :
-                          'bg-blue-100'
+                          'bg-blue-100',
+                          "border border-[#D4AF37]"
                         )}>
                           {icon}
                         </div>
                       </div>
-                      <div className={cn("text-xs font-semibold", textColor)}>
+                      <div className={cn("text-xs font-semibold", textColor, "font-pirate")}>
                         {getStatusLabel(comparison.status)}
                       </div>
                     </div>
