@@ -20,7 +20,7 @@ export interface Character {
 }
 
 const characters: Character[] = [
-  { id: 1, name: "Monkey D. Luffy", gender: "Male", race: "Human", bounty: 3000000000, devilFruit: { has: true, type: "Mythical Zoan", name: "Hito Hito no Mi, Model: Nika" }, firstAppearance: { saga: "East Blue", arc: "Romance Dawn" }, crew: "Straw Hat Pirates", isAlive: true, role: "Captain", image: "/images/monkey_d_luffy.webp" },
+  { id: 1, name: "Monkey D. Luffy", gender: "Male", race: "Human", bounty: 3000000000, devilFruit: { has: true, type: "Mythical Zoan", name: "Hito Hito no Mi, Model: Nika" }, firstAppearance: { saga: "East Blue", arc: "Romance Dawn" }, crew: "Straw Hat Pirates", isAlive: true, role: "Captain", image: "/images/luffy.webp" },
   { id: 2, name: "Roronoa Zoro", gender: "Male", race: "Human", bounty: 1111000000, devilFruit: { has: false, type: "None", name: null }, firstAppearance: { saga: "East Blue", arc: "Romance Dawn" }, crew: "Straw Hat Pirates", isAlive: true, role: "Swordsman", image: "/images/roronoa_zoro.webp" },
   { id: 3, name: "Nami", gender: "Female", race: "Human", bounty: 366000000, devilFruit: { has: false, type: "None", name: null }, firstAppearance: { saga: "East Blue", arc: "Orange Town" }, crew: "Straw Hat Pirates", isAlive: true, role: "Navigator", image: "/images/nami.webp" },
   { id: 4, name: "Usopp", gender: "Male", race: "Human", bounty: 500000000, devilFruit: { has: false, type: "None", name: null }, firstAppearance: { saga: "East Blue", arc: "Syrup Village" }, crew: "Straw Hat Pirates", isAlive: true, role: "Sniper", image: "/images/usopp.webp" },
