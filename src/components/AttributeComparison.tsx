@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { AttributeComparison as AttributeComparisonType } from '../utils/gameLogic';
-import { Check, X, ArrowUp, ArrowDown } from 'lucide-react';
+import { Check, X, ArrowUp, ArrowDown, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AttributeComparisonProps {
@@ -19,9 +19,11 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
       case 'wrong':
         return 'bg-red-50 border-red-200';
       case 'higher':
-        return 'bg-amber-50 border-amber-200';
       case 'lower':
         return 'bg-amber-50 border-amber-200';
+      case 'earlier':
+      case 'later':
+        return 'bg-blue-50 border-blue-200';
       default:
         return 'bg-gray-50 border-gray-200';
     }
@@ -37,6 +39,10 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
         return <ArrowDown className="w-5 h-5 text-amber-500" />;
       case 'lower':
         return <ArrowUp className="w-5 h-5 text-amber-500" />;
+      case 'earlier':
+        return <Clock className="w-5 h-5 text-blue-500 rotate-[-45deg]" />; 
+      case 'later':
+        return <Clock className="w-5 h-5 text-blue-500 rotate-45deg" />; 
       default:
         return null;
     }

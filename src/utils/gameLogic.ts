@@ -26,12 +26,55 @@ export const getAllCharacterNames = (): string[] => {
   return characters.map(char => char.name);
 };
 
+// Map of saga chronological order
+const sagaOrder: Record<string, number> = {
+  'East Blue': 1,
+  'Alabasta': 2,
+  'Skypiea': 3,
+  'Water 7': 4,
+  'Thriller Bark': 5,
+  'Summit War': 6,
+  'Fishman Island': 7,
+  'Dressrosa': 8,
+  'Whole Cake Island': 9,
+  'Wano Country': 10,
+  'Egghead': 11
+};
+
+// Map of arcs chronological order
+const arcOrder: Record<string, number> = {
+  'Romance Dawn': 1,
+  'Orange Town': 2,
+  'Syrup Village': 3,
+  'Baratie': 4,
+  'Arlong Park': 5,
+  'Loguetown': 6,
+  'Reverse Mountain': 7,
+  'Whisky Peak': 8,
+  'Little Garden': 9,
+  'Drum Island': 10,
+  'Arabasta': 11,
+  'Jaya': 12,
+  'Skypiea': 13,
+  'Long Ring Long Land': 14,
+  'Water 7': 15,
+  'Enies Lobby': 16,
+  'Post-Enies Lobby': 17,
+  'Thriller Bark': 18,
+  'Sabaody Archipelago': 19,
+  'Amazon Lily': 20,
+  'Impel Down': 21,
+  'Marineford': 22,
+  'Post-War': 23
+  // Add more arcs as needed
+};
+
 // Compare attributes between guessed and target characters
 export interface AttributeComparison {
   attribute: string;
   value: string | number | boolean | null;
   targetValue: string | number | boolean | null;
-  status: 'correct' | 'wrong' | 'higher' | 'lower';
+  status: 'correct' | 'wrong' | 'higher' | 'lower' | 'earlier' | 'later';
 }
 
 export const compareCharacters = (guessed: Character, target: Character): AttributeComparison[] => {
@@ -93,19 +136,33 @@ export const compareCharacters = (guessed: Character, target: Character): Attrib
   }
   
   // First Appearance - saga comparison
+  const guessedSagaOrder = sagaOrder[guessed.firstAppearance.saga] || 999;
+  const targetSagaOrder = sagaOrder[target.firstAppearance.saga] || 999;
+  
   comparisons.push({
     attribute: 'First Saga',
     value: guessed.firstAppearance.saga,
     targetValue: target.firstAppearance.saga,
-    status: guessed.firstAppearance.saga === target.firstAppearance.saga ? 'correct' : 'wrong'
+    status: guessedSagaOrder === targetSagaOrder 
+      ? 'correct' 
+      : guessedSagaOrder > targetSagaOrder 
+        ? 'later' 
+        : 'earlier'
   });
   
   // First Appearance - arc comparison
+  const guessedArcOrder = arcOrder[guessed.firstAppearance.arc] || 999;
+  const targetArcOrder = arcOrder[target.firstAppearance.arc] || 999;
+  
   comparisons.push({
     attribute: 'First Arc',
     value: guessed.firstAppearance.arc,
     targetValue: target.firstAppearance.arc,
-    status: guessed.firstAppearance.arc === target.firstAppearance.arc ? 'correct' : 'wrong'
+    status: guessedArcOrder === targetArcOrder 
+      ? 'correct' 
+      : guessedArcOrder > targetArcOrder 
+        ? 'later' 
+        : 'earlier'
   });
   
   // Crew comparison
