@@ -36,9 +36,19 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
       case 'wrong':
         return <X className="w-5 h-5 text-red-500" />;
       case 'higher':
-        return <ArrowDown className="w-5 h-5 text-amber-500" />;
+        return (
+          <div className="flex flex-col items-center">
+            <ArrowDown className="w-5 h-5 text-amber-500" />
+            <span className="text-xs font-medium text-amber-500">Too High</span>
+          </div>
+        );
       case 'lower':
-        return <ArrowUp className="w-5 h-5 text-amber-500" />;
+        return (
+          <div className="flex flex-col items-center">
+            <ArrowUp className="w-5 h-5 text-amber-500" />
+            <span className="text-xs font-medium text-amber-500">Too Low</span>
+          </div>
+        );
       case 'earlier':
         return <span className="text-xs font-bold text-blue-500">BEFORE</span>;
       case 'later':
@@ -87,7 +97,7 @@ const AttributeComparison: React.FC<AttributeComparisonProps> = ({ comparison, i
         <p className="text-sm font-medium text-gray-700">{attribute}</p>
         <p className="text-base font-semibold">{getDisplayValue()}</p>
       </div>
-      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white shadow-sm">
+      <div className="flex items-center justify-center">
         {getIcon()}
       </div>
     </div>
