@@ -1,4 +1,3 @@
-
 import characters, { Character } from '../data/onepiece-characters';
 
 // Select a random character for the game
@@ -96,8 +95,9 @@ export const compareCharacters = (guessed: Character, target: Character): Attrib
     status: guessed.race === target.race ? 'correct' : 'wrong'
   });
   
-  // Bounty comparison
+  // Bounty comparison - IMPROVED HANDLING
   if (guessed.bounty !== null && target.bounty !== null) {
+    // Both bounties have values
     comparisons.push({
       attribute: 'Bounty',
       value: guessed.bounty,
@@ -108,12 +108,29 @@ export const compareCharacters = (guessed: Character, target: Character): Attrib
           ? 'higher' 
           : 'lower'
     });
-  } else {
+  } else if (guessed.bounty !== null && target.bounty === null) {
+    // Guessed character has a bounty, target doesn't
     comparisons.push({
       attribute: 'Bounty',
       value: guessed.bounty,
       targetValue: target.bounty,
-      status: guessed.bounty === target.bounty ? 'correct' : 'wrong'
+      status: 'higher' // Treat having a bounty as "higher" than no bounty
+    });
+  } else if (guessed.bounty === null && target.bounty !== null) {
+    // Target has a bounty, guessed doesn't
+    comparisons.push({
+      attribute: 'Bounty',
+      value: guessed.bounty,
+      targetValue: target.bounty,
+      status: 'lower' // Treat having no bounty as "lower" than having one
+    });
+  } else {
+    // Both have null bounties
+    comparisons.push({
+      attribute: 'Bounty',
+      value: guessed.bounty,
+      targetValue: target.bounty,
+      status: 'correct' // Both have no bounty, so it's correct
     });
   }
   
