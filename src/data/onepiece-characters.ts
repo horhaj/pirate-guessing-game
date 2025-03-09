@@ -17,6 +17,7 @@ export interface Character {
   crew: string;
   isAlive: boolean;
   role: string;
+  image: string;
 }
 
 const characters: Character[] = [
@@ -37,7 +38,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/luffy.jpg'
   },
   {
     id: 2,
@@ -56,7 +58,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Swordsman'
+    role: 'Swordsman',
+    image: '/images/zoro.jpg'
   },
   {
     id: 3,
@@ -75,7 +78,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Navigator'
+    role: 'Navigator',
+    image: '/images/nami.jpg'
   },
   {
     id: 4,
@@ -94,7 +98,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Sniper'
+    role: 'Sniper',
+    image: '/images/usopp.jpg'
   },
   {
     id: 5,
@@ -113,7 +118,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Cook'
+    role: 'Cook',
+    image: '/images/sanji.jpg'
   },
   {
     id: 6,
@@ -132,7 +138,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Doctor'
+    role: 'Doctor',
+    image: '/images/chopper.jpg'
   },
   {
     id: 7,
@@ -151,7 +158,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Archaeologist'
+    role: 'Archaeologist',
+    image: '/images/robin.jpg'
   },
   {
     id: 8,
@@ -170,7 +178,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Shipwright'
+    role: 'Shipwright',
+    image: '/images/franky.jpg'
   },
   {
     id: 9,
@@ -189,7 +198,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Musician'
+    role: 'Musician',
+    image: '/images/brook.jpg'
   },
   {
     id: 10,
@@ -208,7 +218,8 @@ const characters: Character[] = [
     },
     crew: 'Straw Hat Pirates',
     isAlive: true,
-    role: 'Helmsman'
+    role: 'Helmsman',
+    image: '/images/jinbe.jpg'
   },
   {
     id: 11,
@@ -227,7 +238,8 @@ const characters: Character[] = [
     },
     crew: 'Heart Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/law.jpg'
   },
   {
     id: 12,
@@ -246,7 +258,8 @@ const characters: Character[] = [
     },
     crew: 'Kuja Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/hancock.jpg'
   },
   {
     id: 13,
@@ -265,7 +278,8 @@ const characters: Character[] = [
     },
     crew: 'Whitebeard Pirates',
     isAlive: false,
-    role: '2nd Division Commander'
+    role: '2nd Division Commander',
+    image: '/images/ace.jpg'
   },
   {
     id: 14,
@@ -284,7 +298,8 @@ const characters: Character[] = [
     },
     crew: 'Blackbeard Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/blackbeard.jpg'
   },
   {
     id: 15,
@@ -303,7 +318,8 @@ const characters: Character[] = [
     },
     crew: 'Red Hair Pirates',
     isAlive: true,
-    role: 'Captain'
+    role: 'Captain',
+    image: '/images/shanks.jpg'
   }
 ];
 
