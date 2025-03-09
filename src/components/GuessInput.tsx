@@ -1,7 +1,7 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { getAllCharacterNames } from '../utils/gameLogic';
 import { cn } from '@/lib/utils';
+import { Search, ArrowRight } from 'lucide-react';
 
 interface GuessInputProps {
   onSubmit: (characterName: string) => void;
@@ -25,7 +25,7 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
       const filtered = characterNames.filter(name => 
         name.toLowerCase().includes(input.toLowerCase())
       );
-      setSuggestions(filtered.slice(0, 5)); // Limit to 5 suggestions
+      setSuggestions(filtered.slice(0, 8)); // Limit to 8 suggestions
       setShowSuggestions(filtered.length > 0);
       setSelectedIndex(-1); // Reset selection when input changes
     } else {
@@ -74,6 +74,8 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
     if (e.key === 'Enter' && selectedIndex >= 0) {
       e.preventDefault();
       handleSuggestionClick(suggestions[selectedIndex]);
+    } else if (e.key === 'Enter' && input.trim()) {
+      handleSubmit(e);
     }
     
     // Escape to close suggestions
@@ -103,6 +105,9 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
     <div className="relative w-full max-w-md mx-auto mb-6">
       <form onSubmit={handleSubmit} className="w-full">
         <div className="relative">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
           <input
             ref={inputRef}
             type="text"
@@ -110,21 +115,27 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={() => input.length > 0 && suggestions.length > 0 && setShowSuggestions(true)}
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-op-blue-300 transition-all"
+            className={cn(
+              "w-full pl-10 pr-20 py-3 border bg-white bg-opacity-90 backdrop-blur-sm",
+              "border-gray-300 focus:border-op-blue-400 rounded-lg shadow-inner",
+              "focus:outline-none focus:ring-2 focus:ring-op-blue-300 transition-all",
+              isCorrect ? "opacity-50 cursor-not-allowed" : ""
+            )}
             placeholder="Enter a character name..."
             disabled={isCorrect}
           />
           <button
             type="submit"
             className={cn(
-              "absolute right-2 top-2 px-4 py-1 rounded-md text-white transition-all",
+              "absolute right-2 top-2 px-4 py-1.5 rounded-md text-white transition-all flex items-center gap-1",
               isCorrect 
                 ? "bg-green-500 cursor-not-allowed" 
-                : "bg-op-blue-600 hover:bg-op-blue-700 btn-hover-effect"
+                : "bg-gradient-to-r from-op-blue-600 to-op-blue-700 hover:from-op-blue-700 hover:to-op-blue-800 shadow-md hover:shadow-lg"
             )}
             disabled={isCorrect}
           >
             Guess
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </form>
@@ -138,8 +149,10 @@ const GuessInput: React.FC<GuessInputProps> = ({ onSubmit, isCorrect }) => {
             <div
               key={index}
               className={cn(
-                "px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors",
-                selectedIndex === index ? "bg-gray-100" : ""
+                "px-4 py-2 cursor-pointer transition-colors border-l-4",
+                selectedIndex === index 
+                  ? "bg-op-blue-50 text-op-blue-700 border-op-blue-500 font-medium" 
+                  : "hover:bg-gray-50 border-transparent"
               )}
               onClick={() => handleSuggestionClick(suggestion)}
             >
